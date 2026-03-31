@@ -56,6 +56,32 @@ export default function App() {
     localStorage.setItem('darkMode', darkMode);
   }, [darkMode]);
 
+  // ── Submit Quiz ──
+  const handleSubmitQuiz = useCallback((autoSubmit = false) => {
+    setTimerActive(false);
+    clearInterval(timerRef.current);
+    if (!autoSubmit && Object.keys(selectedAnswers).length < quiz.questions.length) {
+      setError('Please answer all questions before submitting.');
+      return;
+    }
+    setError('');
+    // Save to history
+    const score = quiz.questions.reduce((acc, q, i) => selectedAnswers[i] === q.answer ? acc + 1 : acc, 0);
+    const entry = {
+      id: Date.now(),
+      topic: quiz.topic,
+      difficulty: quiz.difficulty,
+      score,
+      total: quiz.questions.length,
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
+    };
+    const newHistory = [entry, ...history].slice(0, 20);
+    setHistory(newHistory);
+    localStorage.setItem('quizHistory', JSON.stringify(newHistory));
+    setPage('results');
+  }, [quiz, selectedAnswers, history]);
+
   // ── Timer effect ──
   useEffect(() => {
     if (timerActive && timeLeft > 0) {
@@ -91,32 +117,6 @@ export default function App() {
       setLoading(false);
     }
   };
-
-  // ── Submit Quiz ──
-  const handleSubmitQuiz = useCallback((autoSubmit = false) => {
-    setTimerActive(false);
-    clearInterval(timerRef.current);
-    if (!autoSubmit && Object.keys(selectedAnswers).length < quiz.questions.length) {
-      setError('Please answer all questions before submitting.');
-      return;
-    }
-    setError('');
-    // Save to history
-    const score = quiz.questions.reduce((acc, q, i) => selectedAnswers[i] === q.answer ? acc + 1 : acc, 0);
-    const entry = {
-      id: Date.now(),
-      topic: quiz.topic,
-      difficulty: quiz.difficulty,
-      score,
-      total: quiz.questions.length,
-      date: new Date().toLocaleDateString(),
-      time: new Date().toLocaleTimeString(),
-    };
-    const newHistory = [entry, ...history].slice(0, 20);
-    setHistory(newHistory);
-    localStorage.setItem('quizHistory', JSON.stringify(newHistory));
-    setPage('results');
-  }, [quiz, selectedAnswers, history]);
 
   // ── PDF Download ──
   const downloadPDF = () => {
