@@ -64,7 +64,7 @@ export default function App() {
       handleSubmitQuiz(true);
     }
     return () => clearInterval(timerRef.current);
-  }, [timerActive, timeLeft]);
+  }, [timerActive, timeLeft, handleSubmitQuiz]);
 
   // ── Generate Quiz ──
   const generateQuiz = async () => {

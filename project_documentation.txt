@@ -1,0 +1,57 @@
+CHAPTER 2
+
+REQUIREMENTS SPECIFICATION
+
+2.1 Hardware Requirements
+
+• Computer/Laptop: A basic system to run the project
+• Processor: Intel i3 or higher for good performance
+• RAM: Minimum 4 GB (8 GB is better for smooth working)
+• Storage: At least 10 GB free space to store files and data
+• Internet: Needed to download tools and API access
+• Keyboard & Mouse: For input
+• Monitor: To see output and results
+
+2.2 Software Requirements
+
+• Operating System: Windows, Linux, or macOS
+• Programming Language: JavaScript (Node.js) for backend, React for frontend
+• Code Editor: VS Code or any JavaScript IDE
+• Node.js: Runtime environment for server-side JavaScript
+• npm/yarn: Package manager for JavaScript dependencies
+• React Framework: For frontend UI development
+• Express.js: For backend server and API routing
+• API Integration: Anthropic Claude API for AI quiz generation
+• Version Control: Git/GitHub to manage code
+• Browser: Chrome or any modern browser to run the React application
+• Environment Variables: .env file for API key management
+
+CHAPTER 4
+
+CODING
+
+4.1 Backend
+
+• Developed using Node.js and Express.js
+• Used for handling API requests and server-side logic
+• Express.js – for backend framework and routing
+• Anthropic API – for AI-powered quiz generation
+• CORS – for handling cross-origin requests
+• Processes user quiz parameters and topics
+• Communicates with Anthropic Claude API
+• Generates quiz questions and answers
+• Handles error responses and validation
+
+4.2 Frontend
+
+• Developed using React.js
+• React – for component-based UI development
+• HTML5 – for semantic web page structure
+• CSS3 – for styling and responsive design
+• JavaScript ES6+ – for interactivity and state management
+• Axios/Fetch – for API communication with backend
+• Provides user-friendly quiz interface
+• Allows users to input quiz topics and preferences
+• Displays generated questions and answers
+• Shows quiz results and scoring
+• Communicates with Node.js backend for AI processing
